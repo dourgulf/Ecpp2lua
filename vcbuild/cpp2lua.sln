@@ -5,6 +5,12 @@ VisualStudioVersion = 15.0.27130.2010
 MinimumVisualStudioVersion = 10.0.40219.1
 Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "cpp2lua", "cpp2lua.vcxproj", "{17F5C273-A209-4182-8D8C-8E240A1E1B2B}"
 EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "doc", "doc", "{DDAED34D-AAA4-4CB1-9628-6AA4B97FCC9B}"
+	ProjectSection(SolutionItems) = preProject
+		..\doc\export_cpp_to_lua_001.md = ..\doc\export_cpp_to_lua_001.md
+		..\lua\doc\manual.html = ..\lua\doc\manual.html
+	EndProjectSection
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|x64 = Debug|x64

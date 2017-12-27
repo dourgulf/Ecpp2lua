@@ -6,6 +6,7 @@
 
 namespace cpp2lua
 {
+	void dump_stack(lua_State* L);
 
 };
 
