@@ -2,6 +2,7 @@
 # This .gitignore file was automatically created by Microsoft(R) Visual Studio.
 ################################################################################
 
-/vcbuild/.vs/cpp2lua/v15
-/vcbuild/Debug/cpp2lua.tlog
+/vcbuild/.vs/
 /vcbuild/Debug
+/.vscode
+/vcbuild/x64/Debug

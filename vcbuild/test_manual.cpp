@@ -24,7 +24,7 @@ std::string join_vector(const std::vector<int>& vec, const char* sep = ",")
 
 int join_vector_wrapper(lua_State* L)
 {
-	cpp2lua::dump_stack(L);
+	//cpp2lua::dump_stack(L);
 
 	int args = lua_gettop(L);
 	if (args == 1)
@@ -32,14 +32,13 @@ int join_vector_wrapper(lua_State* L)
 		lua_pushvalue(L, lua_upvalueindex(1));
 	}
 
-	cpp2lua::dump_stack(L);
+	//cpp2lua::dump_stack(L);
 
 	std::vector<int> vec;
 	lua_pushnil(L);
 	int tb_index = 1;
 	while (lua_next(L, tb_index) != 0)
 	{
-		cpp2lua::dump_stack(L);
 		vec.emplace_back((int)lua_tointeger(L, -1));
 		lua_pop(L, 1);	// remain key for next loop
 	}
@@ -49,7 +48,17 @@ int join_vector_wrapper(lua_State* L)
 	return 1;
 }
 
+
 void test_manual()
 {
+	lua_State *L = luaL_newstate();
+	luaL_openlibs(L);
+	lua_pushstring(L, ",");
+	lua_pushcclosure(L, join_vector_wrapper, 1);
+	lua_setglobal(L, "test");
 
+	std::string lua_code = "a = {10,9,8}; s = test(a); print(s);";
+	cpp2lua::dostring(L, lua_code);
+
+	lua_close(L);
 }
