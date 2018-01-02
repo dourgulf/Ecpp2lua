@@ -24,24 +24,30 @@ std::string join_vector(const std::vector<int>& vec, const char* sep = ",")
 
 int join_vector_wrapper(lua_State* L)
 {
-	//cpp2lua::dump_stack(L);
-
 	int args = lua_gettop(L);
 	if (args == 1)
 	{
 		lua_pushvalue(L, lua_upvalueindex(1));
 	}
 
-	//cpp2lua::dump_stack(L);
-
+	using namespace cpp2lua::helper;
+	table_iterator table(stack_object(L, 1));
 	std::vector<int> vec;
-	lua_pushnil(L);
-	int tb_index = 1;
-	while (lua_next(L, tb_index) != 0)
+	while (table.has_next())
 	{
-		vec.emplace_back((int)lua_tointeger(L, -1));
-		lua_pop(L, 1);	// remain key for next loop
+		vec.emplace_back(table.value().to_int());
+		table.next();
 	}
+	//std::vector<int> vec;
+	//lua_pushnil(L);
+	//int tb_index = 1;
+	//while (lua_next(L, tb_index) != 0)
+	//{
+	//	cpp2lua::dump_stack(L);
+	//	vec.emplace_back((int)lua_tointeger(L, lua_gettop(L)));
+	//	lua_pop(L, 1);	// remain key for next loop
+	//}
+
 	const char* sep = lua_tostring(L, 2);
 	std::string s = join_vector(vec, sep);
 	lua_pushstring(L, s.c_str());

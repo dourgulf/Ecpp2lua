@@ -188,6 +188,7 @@
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="..\cpp2lua\cpp2lua.h" />
+    <ClInclude Include="..\cpp2lua\cpp2lua_stack_helper.h" />
     <ClInclude Include="..\lua\src\lapi.h" />
     <ClInclude Include="..\lua\src\lauxlib.h" />
     <ClInclude Include="..\lua\src\lcode.h" />

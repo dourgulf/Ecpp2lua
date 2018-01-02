@@ -3,6 +3,7 @@
 #define CPP2LUA_H__
 
 #include "lua.hpp"
+#include "cpp2lua_stack_helper.h"
 
 #include <string>
 
@@ -15,6 +16,7 @@ namespace cpp2lua
 	// do a lua code
 	void dostring(lua_State* L, const std::string& str);
 	void dobuffer(lua_State* L, const char* buf, size_t len);
+
 };
 
 #endif

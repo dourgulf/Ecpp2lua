@@ -203,5 +203,8 @@
     <ClInclude Include="..\cpp2lua\cpp2lua.h">
       <Filter>cpp2lua</Filter>
     </ClInclude>
+    <ClInclude Include="..\cpp2lua\cpp2lua_stack_helper.h">
+      <Filter>cpp2lua</Filter>
+    </ClInclude>
   </ItemGroup>
 </Project>
