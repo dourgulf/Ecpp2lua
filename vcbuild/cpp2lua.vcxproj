@@ -184,7 +184,8 @@
     <ClCompile Include="..\lua\src\lvm.c" />
     <ClCompile Include="..\lua\src\lzio.c" />
     <ClCompile Include="main.cpp" />
-    <ClCompile Include="test_manual.cpp" />
+    <ClCompile Include="test_manual_01.cpp" />
+    <ClCompile Include="test_manual_02.cpp" />
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="..\cpp2lua\cpp2lua.h" />

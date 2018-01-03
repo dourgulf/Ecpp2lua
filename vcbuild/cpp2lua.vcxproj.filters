@@ -117,7 +117,10 @@
     <ClCompile Include="main.cpp">
       <Filter>tests</Filter>
     </ClCompile>
-    <ClCompile Include="test_manual.cpp">
+    <ClCompile Include="test_manual_01.cpp">
+      <Filter>tests</Filter>
+    </ClCompile>
+    <ClCompile Include="test_manual_02.cpp">
       <Filter>tests</Filter>
     </ClCompile>
   </ItemGroup>

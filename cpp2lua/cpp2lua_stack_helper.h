@@ -35,21 +35,9 @@ namespace cpp2lua
 				return m_stack_pos != 0;
 			}
 
-			int get_type() const
-			{
-				if (is_valid())
-				{
-					return lua_type(m_L, m_stack_pos);
-				}
-				else
-				{
-					return LUA_TNONE;
-				}
-			}
-
 			bool is_number() const 
 			{ 
-				return get_type() == LUA_TNUMBER; 
+				return is_valid() && lua_isnumber(m_L, m_stack_pos) == 1;
 			}
 			
 			bool is_string() const 
@@ -73,7 +61,7 @@ namespace cpp2lua
 					&& lua_istable(m_L, m_stack_pos);
 			}
 
-			int to_int(int dft=0)
+			int to_integer(int dft=0)
 			{
 				if (is_integer())
 				{

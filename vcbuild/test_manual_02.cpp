@@ -3,7 +3,7 @@
 
 #include "cpp2lua.h"
 
-std::string join_vector(const std::vector<int>& vec, const char* sep = ",")
+static std::string join_vector(const std::vector<int>& vec, const char* sep = ",")
 {
 	std::string result;
 	for (size_t i=0; i<vec.size(); ++i)
@@ -22,7 +22,7 @@ std::string join_vector(const std::vector<int>& vec, const char* sep = ",")
 	return result;
 }
 
-int join_vector_wrapper(lua_State* L)
+static int join_vector_wrapper(lua_State* L)
 {
 	int args = lua_gettop(L);
 	if (args == 1)
@@ -30,23 +30,14 @@ int join_vector_wrapper(lua_State* L)
 		lua_pushvalue(L, lua_upvalueindex(1));
 	}
 
-	using namespace cpp2lua::helper;
-	table_iterator table(stack_object(L, 1));
 	std::vector<int> vec;
-	while (table.has_next())
+	lua_pushnil(L);
+	int tb_index = 1;
+	while (lua_next(L, tb_index) != 0)
 	{
-		vec.emplace_back(table.value().to_int());
-		table.next();
+		vec.emplace_back((int)lua_tointeger(L, lua_gettop(L)));
+		lua_pop(L, 1);	// remain key for next loop
 	}
-	//std::vector<int> vec;
-	//lua_pushnil(L);
-	//int tb_index = 1;
-	//while (lua_next(L, tb_index) != 0)
-	//{
-	//	cpp2lua::dump_stack(L);
-	//	vec.emplace_back((int)lua_tointeger(L, lua_gettop(L)));
-	//	lua_pop(L, 1);	// remain key for next loop
-	//}
 
 	const char* sep = lua_tostring(L, 2);
 	std::string s = join_vector(vec, sep);
@@ -55,7 +46,7 @@ int join_vector_wrapper(lua_State* L)
 }
 
 
-void test_manual()
+void test_manual_01()
 {
 	lua_State *L = luaL_newstate();
 	luaL_openlibs(L);
