@@ -17,6 +17,8 @@ namespace cpp2lua
 	void dostring(lua_State* L, const std::string& str);
 	void dobuffer(lua_State* L, const char* buf, size_t len);
 
+	template<typename Func, typename... DefaultArgs>
+	void def(lua_State* L, const char* name, Func&& func, DefaultArgs&&... defaultArgs);
 };
 
 #endif

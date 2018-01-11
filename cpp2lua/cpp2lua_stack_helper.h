@@ -127,6 +127,8 @@ namespace cpp2lua
 			int m_key_index = 0;
 			stack_object m_table;
 		};
+
+
 	}
 }
 #endif
